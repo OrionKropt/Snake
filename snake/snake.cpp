@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <conio.h>
 
 using namespace std;
 
@@ -26,8 +27,8 @@ void Setup()
 void Draw()
 {
     system("cls"); 
-    cout << " ";
-    for (int i = 0; i < width-1; i++)
+    
+    for (int i = 0; i <= width; i++)
     {
         cout << "#";
     }
@@ -41,13 +42,25 @@ void Draw()
             {
                 cout << "#";
             }
-            cout << " ";
+            
+            if (i == y && j == x)
+            {
+                cout << "0";
+            }
+            else if (i == fruitY && j == fruitX)
+            {
+                cout << "F";
+            }
+            else
+            {
+                cout << " ";
+            }
         }
         cout << endl;
         
     }
-    cout << " ";
-    for (int i = 0; i < width-1; i++)
+    
+    for (int i = 0; i <= width; i++)
     {
         cout << "#";
     }
@@ -55,7 +68,25 @@ void Draw()
 
 void Input()
 {
-
+    if (_kbhit())
+    {
+        switch (_getch())
+        {
+        case 'a':
+            dir == LEFT;
+            break;
+        case 's':
+            dir == DOWN;
+            break;
+        case 'd':
+            dir == RIGHT;
+            break;
+        case 'w':
+            dir == UP;
+        default:
+            break;
+        }
+    }
 }
 
 void Logic()

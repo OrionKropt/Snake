@@ -1,2 +1,6 @@
 ﻿  snake.cpp
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(76,17): warning C4553: "==": результат выражения не используется; вы хотели использовать "="?
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(79,17): warning C4553: "==": результат выражения не используется; вы хотели использовать "="?
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(82,17): warning C4553: "==": результат выражения не используется; вы хотели использовать "="?
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(85,17): warning C4553: "==": результат выражения не используется; вы хотели использовать "="?
   snake.vcxproj -> C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\x64\Debug\snake.exe
