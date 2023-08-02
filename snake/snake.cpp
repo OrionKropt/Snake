@@ -70,28 +70,57 @@ void Input()
 {
     if (_kbhit())
     {
-        switch (_getch())
+        int key = _getch();
+       // if (key == 224) key = _getch();
+        //cout << key;
+        switch (key)
         {
         case 'a':
-            dir == LEFT;
-            break;
-        case 's':
-            dir == DOWN;
+            dir = LEFT;
             break;
         case 'd':
-            dir == RIGHT;
+            dir = RIGHT;
             break;
         case 'w':
-            dir == UP;
-        default:
+            dir = UP;
             break;
+        case 's':
+            dir = DOWN;
+            break;
+        case 'x':
+            gameOver = true;
+            break;
+       
         }
-    }
+   }
 }
 
 void Logic()
 {
+    switch (dir)
+    {
+    case LEFT:
+        x--;
+        break;
+    case RIGHT:
+        x++;
+        break;
+    case UP:
+        y--;
+        break;
+    case DOWN:
+        y++;
+        break;
+    
+    }
+    if (x > width || x < 0) gameOver = true;
+    if (y > height || y < 0) gameOver = true;
 
+    if (x == fruitX && y == fruitY)
+    {
+        fruitX = rand() % width;
+        fruitY = rand() % height;
+    }
 }
 
 int main()
