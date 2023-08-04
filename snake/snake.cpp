@@ -1,24 +1,27 @@
 ﻿#include <iostream>
 #include <conio.h>
-
+#include "TConsole.h"
 using namespace std;
 
-bool gameOver;
+bool gameOver, mainMenu; 
 
-const int width = 20;
+const int width = 20; 
 const int height = 20;
 
-int x, y, fruitX, fruitY, score;
+int x, y, fruitX, fruitY, score; // the coordinates of the snake's head and the fruit
 
-int tailX[100], tailY[100];
+int tailX[100], tailY[100]; // Arrays for coordinates of tail
 int nTail;
-enum eDirection {STOP = 0, LEFT, RIGHT, UP, DOWN};
+enum eDirection {STOP = 0, LEFT, RIGHT, UP, DOWN}; // move snake
 
-eDirection dir;
+eDirection dir; // corrent move
 
-void Setup()
+TConsole Console;
+
+void Setup() // function Setting
 {
     gameOver = false;
+    mainMenu = false;
     dir = STOP;
     x = width / 2;
     y = height / 2;
@@ -26,7 +29,23 @@ void Setup()
     fruitY = rand() % height;
 }
 
-void Draw()
+void DrowMenu()
+{
+    Console.GotoXY(60, 14);
+    cout << "PLAY";
+    Console.GotoXY(60, 15);
+    cout << "LEVELS";
+    Console.GotoXY(60, 16);
+    cout << "EXIT";
+    Console.GotoXY(60, 14);
+}
+
+void MoveMenu()
+{
+
+}
+
+void Draw() // Object drawing function
 {
     system("cls"); 
     
@@ -84,7 +103,7 @@ void Draw()
     cout << "Score " << score << endl;
 }
 
-void Input()
+void Input() // Function that reads keystrokes
 {
     if (_kbhit())
     {
@@ -104,7 +123,7 @@ void Input()
         case 's':
             dir = DOWN;
             break;
-        case 'x':
+        case 27:    // Esc
             gameOver = true;
             break;
        
@@ -112,7 +131,7 @@ void Input()
    }
 }
 
-void Logic()
+void Logic() // Games's logic
 {
 
     int prevX = tailX[0];
@@ -169,6 +188,11 @@ void Logic()
 int main()
 {
     Setup();
+    while (!mainMenu)
+    {
+        DrowMenu();
+        MoveMenu();
+    }
     while (!gameOver)
     {
         Draw();
