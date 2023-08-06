@@ -1,17 +1,28 @@
 ﻿#include <iostream>
 #include <conio.h>
 #include "TConsole.h"
+
+#define DEBUG
+
+#define PLAY 0
+#define LEVELS 1
+#define EXIT 2
 using namespace std;
 
-bool gameOver, mainMenu; 
+bool gameOver, mainMenu;
+bool click_enter; // Functions Menu
 
 const int width = 20; 
 const int height = 20;
 
+
 int x, y, fruitX, fruitY, score; // the coordinates of the snake's head and the fruit
+
+
 
 int tailX[100], tailY[100]; // Arrays for coordinates of tail
 int nTail;
+int  MainMenuDir; // main menu cursor
 enum eDirection {STOP = 0, LEFT, RIGHT, UP, DOWN}; // move snake
 
 eDirection dir; // corrent move
@@ -22,7 +33,9 @@ void Setup() // function Setting
 {
     gameOver = false;
     mainMenu = false;
+    click_enter = false;
     dir = STOP;
+    MainMenuDir = 0;
     x = width / 2;
     y = height / 2;
     fruitX = rand() % width;
@@ -31,18 +44,38 @@ void Setup() // function Setting
 
 void DrowMenu()
 {
+    if (MainMenuDir == PLAY) Console.TextColor(COLOR_GREEN);
     Console.GotoXY(60, 14);
     cout << "PLAY";
+    Console.TextColor(COLOR_WHITE);
+    if (MainMenuDir == LEVELS) Console.TextColor(COLOR_GREEN);
     Console.GotoXY(60, 15);
     cout << "LEVELS";
+    Console.TextColor(COLOR_WHITE);
+    if (MainMenuDir == EXIT) Console.TextColor(COLOR_GREEN);
     Console.GotoXY(60, 16);
     cout << "EXIT";
-    Console.GotoXY(60, 14);
+    Console.TextColor(COLOR_WHITE);
 }
 
 void MoveMenu()
 {
-
+    int key = _getch();
+    
+    switch (key)
+    {
+    case 'w':
+        (MainMenuDir == 0) ? (MainMenuDir = 2) : (MainMenuDir--);
+        break;
+    case 's':
+        (MainMenuDir == 2) ? (MainMenuDir = 0) : (MainMenuDir++);
+        break;
+    case 13: // Enter
+        click_enter = true;
+        break;
+    default:
+        break;
+    }
 }
 
 void Draw() // Object drawing function
@@ -187,6 +220,8 @@ void Logic() // Games's logic
 
 int main()
 {
+    
+    
     Setup();
     while (!mainMenu)
     {
