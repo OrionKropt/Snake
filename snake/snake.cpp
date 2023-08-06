@@ -31,7 +31,7 @@ TConsole Console;
 
 void Setup() // function Setting
 {
-    gameOver = false;
+    gameOver = true;
     mainMenu = false;
     click_enter = false;
     dir = STOP;
@@ -76,6 +76,11 @@ void MoveMenu()
     default:
         break;
     }
+}
+
+void exit()
+{
+    if (MainMenuDir == EXIT && click_enter) mainMenu = true;
 }
 
 void Draw() // Object drawing function
@@ -218,7 +223,7 @@ void Logic() // Games's logic
     }
 }
 
-int main()
+void main()
 {
     
     
@@ -227,11 +232,14 @@ int main()
     {
         DrowMenu();
         MoveMenu();
-    }
-    while (!gameOver)
-    {
-        Draw();
-        Input();
-        Logic();
+        exit();
+        click_enter = false;
+        while (!gameOver)
+        {
+            Draw();
+            Input();
+            Logic();
+        }
+
     }
 }
