@@ -41,26 +41,25 @@ private:
     char MapDesign[width][height];
    
 public:
+#ifdef DEBUG
     map()
     {
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
-                if (i == 0 || j == 0 || i == width-1 || j == height-1) MapDesign[i][j] = '#';
+                if (i == 0 || j == 0 || i == width - 1 || j == height - 1) MapDesign[i][j] = '#';
                 else MapDesign[i][j] = ' ';
             }
         }
     }
-    void ClearFruit()
+#endif // DEBUG
+
+   
+    void ClearFruit(int x, int y)
     {
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (MapDesign[i][j] == '$') MapDesign[i][j] = ' ';
-            }
-        }
+        
+        MapDesign[y][x] = ' ';
     }
     void SetMapDedign(int i, int j, int value)
     {
@@ -132,7 +131,7 @@ void Setup(map& Level) // function Setting
     MainMenuDir = 0;
     x = width / 2;
     y = height / 2;
-    Level.ClearFruit();
+    Level.ClearFruit(fruitX, fruitY);
     do
     {
         fruitX = rand() % width;
