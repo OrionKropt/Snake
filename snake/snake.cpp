@@ -3,6 +3,7 @@
 #include "TConsole.h"
 #include <ctime>
 
+
 #define DEBUG
 
 #define PLAY 0
@@ -35,6 +36,68 @@ eDirection dir; // corrent move
 
 TConsole Console;
 
+
+class shapes
+{
+private:
+    int x;
+    int y;
+    int shape[50][2];
+    int count;
+public:
+    shapes()
+    {
+        x = 0;
+        y = 0;
+        count = 0;
+        for (int i = 0; i < size(shape); i++)
+        {
+            for (int j = 0; j < size(shape); j++)
+            {
+                shape[i][j] = 0;
+            }
+        }
+    }
+
+    void SetXY(int setX, int setY)
+    {
+        shape[y][x] = x;
+        shape[y][x + 1] = y;
+        y++;
+        count++;
+    }
+
+    void DelXY(int setX, int setY)
+    {
+        shape[y][x] = 0;
+        shape[y][x] = 0;
+        y--;
+        count--;
+    }
+
+#ifdef DEBUG
+
+    void PrintShape()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            for (int j = 0; j < count; j++)
+            {
+                cout << shape[i][j];
+            }
+            cout << endl;
+        }
+        if (count == 0)
+        {
+            cout << "coordinates are not set" << endl;
+        }
+    }
+#endif // DEBUG
+
+
+};
+
+
 class map
 {
 private:
@@ -56,12 +119,8 @@ public:
 #endif // DEBUG
 
    
-    void ClearFruit(int x, int y)
-    {
-        
-        MapDesign[y][x] = ' ';
-    }
-    void SetMapDedign(int i, int j, int value)
+
+    void SetMapDesign(int i, int j, int value)
     {
         MapDesign[i][j] = value;
     }
@@ -70,15 +129,17 @@ public:
     {
         
             MapDesign[y][x] = '$';
-          
+    }
+
+    void ClearFruit(int x, int y)
+    {
+        MapDesign[y][x] = ' ';
     }
 
     bool CheckFruit(int x, int y)
     {
-        if (MapDesign[y][x] == ' ')
-        {
-            return true;
-        }
+        if (MapDesign[y][x] == ' ') return true;
+     
         else return false;
     }
 
@@ -121,6 +182,8 @@ public:
 };
 
 map Level_1, Level_2, Level_3;
+shapes Right_angle;
+
 
 void Setup(map& Level) // function Setting
 {
@@ -163,6 +226,9 @@ void CreateLevels()
             
         }
     }
+
+    
+
 }
 
 void DrowMenu()
@@ -367,6 +433,8 @@ void gameover()
     cout << "GAME OVER";
     Console.GotoXY(57, 16);
     cout << "Please, click space" << endl;
+    Console.GotoXY(57, 18);
+    cout << "Score: " << score;
     while (_getch() != ' ');
 }
 
@@ -374,30 +442,30 @@ void main()
 {
     
     
-    Setup(Level_1);
-    while (!mainMenu)
-    {
-        DrowMenu();
-        MoveMenu();
-        exit();
-        Play();
-        click_enter = false;
-        while (!gameOver)
-        {
-            //Draw();
-            Input();
-            Logic(Level_1);
-            Level_1.DrowMap();
-            if (gameOver)
-            {
-                gameover();
-                Setup(Level_1);
+    //Setup(Level_1);
+    //while (!mainMenu)
+    //{
+    //    DrowMenu();
+    //    MoveMenu();
+    //    exit();
+    //    Play();
+    //    click_enter = false;
+    //    while (!gameOver)
+    //    {
+    //        //Draw();
+    //        Input();
+    //        Logic(Level_1);
+    //        Level_1.DrowMap();
+    //        if (gameOver)
+    //        {
+    //            gameover();
+    //            Setup(Level_1);
 
-            }
-        }
+    //        }
+    //    }
 
-    }
+    //}
 
-    Level_1.DrowMap();
+    Right_angle.PrintShape();
 
 }
