@@ -1,7 +1,9 @@
 ﻿#include <iostream>
 #include <conio.h>
-#include "TConsole.h"
 #include <ctime>
+#include "TConsole.h"
+#include "Shapes.h"
+
 
 
 #define DEBUG
@@ -37,65 +39,7 @@ eDirection dir; // corrent move
 TConsole Console;
 
 
-class shapes
-{
-private:
-    int x;
-    int y;
-    int shape[50][2];
-    int count;
-public:
-    shapes()
-    {
-        x = 0;
-        y = 0;
-        count = 0;
-        for (int i = 0; i < size(shape); i++)
-        {
-            for (int j = 0; j < size(shape); j++)
-            {
-                shape[i][j] = 0;
-            }
-        }
-    }
 
-    void SetXY(int setX, int setY)
-    {
-        shape[y][x] = x;
-        shape[y][x + 1] = y;
-        y++;
-        count++;
-    }
-
-    void DelXY(int setX, int setY)
-    {
-        shape[y][x] = 0;
-        shape[y][x] = 0;
-        y--;
-        count--;
-    }
-
-#ifdef DEBUG
-
-    void PrintShape()
-    {
-        for (int i = 0; i < count; i++)
-        {
-            for (int j = 0; j < count; j++)
-            {
-                cout << shape[i][j];
-            }
-            cout << endl;
-        }
-        if (count == 0)
-        {
-            cout << "coordinates are not set" << endl;
-        }
-    }
-#endif // DEBUG
-
-
-};
 
 
 class map
@@ -120,9 +64,9 @@ public:
 
    
 
-    void SetMapDesign(int i, int j, int value)
+    void SetMapDesign(int i, int j, char object)
     {
-        MapDesign[i][j] = value;
+        MapDesign[i][j] = object;
     }
 
     void SetFruit(int x, int y)
@@ -182,7 +126,7 @@ public:
 };
 
 map Level_1, Level_2, Level_3;
-shapes Right_angle;
+
 
 
 void Setup(map& Level) // function Setting
@@ -440,7 +384,7 @@ void gameover()
 
 void main()
 {
-    
+    Shapes ReadyShapes;
     
     //Setup(Level_1);
     //while (!mainMenu)
@@ -465,7 +409,8 @@ void main()
     //    }
 
     //}
-
-    Right_angle.PrintShape();
+    ReadyShapes.RedyShapes();
+    ReadyShapes.Get_coordinates_Right_angle_small();
+    ReadyShapes.Add_to_map_Right_angle_small(Level_2.SetMapDesign);
 
 }

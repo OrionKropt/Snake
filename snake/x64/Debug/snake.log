@@ -1,3 +1,5 @@
-﻿  snake.cpp
-C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(442,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+﻿  Shapes.cpp
+  snake.cpp
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(386,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  Создание кода...
   snake.vcxproj -> C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\x64\Debug\snake.exe
