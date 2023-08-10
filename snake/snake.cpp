@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <conio.h>
 #include "TConsole.h"
+#include <ctime>
 
 #define DEBUG
 
@@ -8,6 +9,11 @@
 #define LEVELS 1
 #define EXIT 2
 using namespace std;
+
+
+
+
+
 
 bool gameOver, mainMenu;
 bool click_enter; // Functions Menu
@@ -29,7 +35,95 @@ eDirection dir; // corrent move
 
 TConsole Console;
 
-void Setup() // function Setting
+class map
+{
+private:
+    char MapDesign[width][height];
+   
+public:
+    map()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (i == 0 || j == 0 || i == width-1 || j == height-1) MapDesign[i][j] = '#';
+                else MapDesign[i][j] = ' ';
+            }
+        }
+    }
+    void ClearFruit()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (MapDesign[i][j] == '$') MapDesign[i][j] = ' ';
+            }
+        }
+    }
+    void SetMapDedign(int i, int j, int value)
+    {
+        MapDesign[i][j] = value;
+    }
+
+    void SetFruit(int x, int y)
+    {
+        
+            MapDesign[y][x] = '$';
+          
+    }
+
+    bool CheckFruit(int x, int y)
+    {
+        if (MapDesign[y][x] == ' ')
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    void DrowMap()
+    {
+        system("cls");
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                if (i == y && j == x)
+                {
+                    MapDesign[i][j] = '0';
+                }
+                else if (i == 0 || j == 0 || i == width - 1 || j == height - 1) MapDesign[i][j] = '#';
+                else
+                {
+                    bool print = false;
+                    for (int k = 0; k < nTail; k++)
+                    {
+                        if (tailX[k] == j && tailY[k] == i)
+                        {
+                            MapDesign[i][j] = 'o';
+                            print = true;
+                        }
+                    }
+                    if (!print && MapDesign[i][j] != '$' && MapDesign[i][j] != '#')
+                    {
+                        MapDesign[i][j] = ' ';
+                    }
+                }
+                cout << MapDesign[i][j];
+            }
+            cout << endl;
+        }
+        cout << endl;
+        cout << "Score " << score << endl;
+    }
+
+};
+
+map Level_1, Level_2, Level_3;
+
+void Setup(map& Level) // function Setting
 {
     gameOver = true;
     mainMenu = false;
@@ -38,12 +132,43 @@ void Setup() // function Setting
     MainMenuDir = 0;
     x = width / 2;
     y = height / 2;
-    fruitX = rand() % width;
-    fruitY = rand() % height;
+    Level.ClearFruit();
+    do
+    {
+        fruitX = rand() % width;
+        fruitY = rand() % height;
+        
+    } while (!Level.CheckFruit(fruitX, fruitY));
+
+    Level.SetFruit(fruitX, fruitY);
+
+    for (int i = 0; i < 100; i++)
+    {
+        tailX[i] = 0;
+        tailY[i] = 0;
+    }
+    nTail = 0;
+    score = 0;
+}
+
+
+
+
+void CreateLevels()
+{
+    // Level_2
+    for (int i = 0; i < width; i++)
+    {
+        for (int j = 0; j < height; j++)
+        {
+            
+        }
+    }
 }
 
 void DrowMenu()
 {
+    system("cls");
     if (MainMenuDir == PLAY) Console.TextColor(COLOR_GREEN);
     Console.GotoXY(60, 14);
     cout << "PLAY";
@@ -83,63 +208,68 @@ void exit()
     if (MainMenuDir == EXIT && click_enter) mainMenu = true;
 }
 
-void Draw() // Object drawing function
+void Play()
 {
-    system("cls"); 
-    
-    for (int i = 0; i <= width; i++)
-    {
-        cout << "#";
-    }
-    cout << endl;
-
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
-            if (j == 0 || j == width-1)
-            {
-                cout << "#";
-            }
-            
-            if (i == y && j == x)
-            {
-                cout << "0";
-            }
-            else if (i == fruitY && j == fruitX)
-            {
-                cout << "$";
-            }
-            else
-            {
-                bool print = false;
-                for (int k = 0; k < nTail; k++)
-                {
-                    if (tailX[k] == j && tailY[k] == i)
-                    {
-                        cout << "o";
-                        print = true;
-                    }
-                }
-                if (!print)
-                {
-                    cout << " ";
-                }
-                    
-
-            }
-        }
-        cout << endl;
-        
-    }
-    
-    for (int i = 0; i <= width; i++)
-    {
-        cout << "#";
-    }
-    cout << endl;
-    cout << "Score " << score << endl;
+    if (MainMenuDir == PLAY && click_enter) gameOver = false;
 }
+
+//void Draw() // Object drawing function
+//{
+//    system("cls"); 
+//    
+//    for (int i = 0; i <= width; i++)
+//    {
+//        cout << "#";
+//    }
+//    cout << endl;
+//
+//    for (int i = 0; i < height; i++)
+//    {
+//        for (int j = 0; j < width; j++)
+//        {
+//            if (j == 0 || j == width-1)
+//            {
+//                cout << "#";
+//            }
+//            
+//            if (i == y && j == x)
+//            {
+//                cout << "0";
+//            }
+//            else if (i == fruitY && j == fruitX)
+//            {
+//                cout << "$";
+//            }
+//            else
+//            {
+//                bool print = false;
+//                for (int k = 0; k < nTail; k++)
+//                {
+//                    if (tailX[k] == j && tailY[k] == i)
+//                    {
+//                        cout << "o";
+//                        print = true;
+//                    }
+//                }
+//                if (!print)
+//                {
+//                    cout << " ";
+//                }
+//                    
+//
+//            }
+//        }
+//        cout << endl;
+//        
+//    }
+//    
+//    for (int i = 0; i <= width; i++)
+//    {
+//        cout << "#";
+//    }
+//    cout << endl;
+//    cout << "Score " << score << endl;
+//}
 
 void Input() // Function that reads keystrokes
 {
@@ -169,7 +299,7 @@ void Input() // Function that reads keystrokes
    }
 }
 
-void Logic() // Games's logic
+void Logic(map& Level) // Games's logic
 {
 
     int prevX = tailX[0];
@@ -202,10 +332,10 @@ void Logic() // Games's logic
         break;
     
     }
-    if (x >= width-1) x = 1;
-    else if (x == 0) x = width - 2;
-    else if (y < 0) y = height - 1;
-    else if (y == height) y = 0;
+    if (x >= width-1) x = 2;
+    else if (x < 1) x = width - 2;
+    else if (y < 1) y = height - 2;
+    else if (y == height-1) y = 1;
     
     for (int i = 0; i < nTail; i++)
     {
@@ -216,30 +346,59 @@ void Logic() // Games's logic
 
     if (x == fruitX && y == fruitY)
     {
-        fruitX = rand() % width;
-        fruitY = rand() % height;
+        do
+        {
+            fruitX = rand() % width;
+            fruitY = rand() % height;
+        } while (!Level.CheckFruit(fruitX, fruitY));
+
+        Level.SetFruit(fruitX, fruitY);
+       
+        /*fruitX = rand() % width;
+        fruitY = rand() % height;*/
         score += 10;
         nTail++;
     }
+}
+
+void gameover()
+{
+    system("cls");
+    Console.GotoXY(60, 14);
+    cout << "GAME OVER";
+    Console.GotoXY(57, 16);
+    cout << "Please, click space" << endl;
+    while (_getch() != ' ');
 }
 
 void main()
 {
     
     
-    Setup();
+    Setup(Level_1);
     while (!mainMenu)
     {
         DrowMenu();
         MoveMenu();
         exit();
+        Play();
         click_enter = false;
         while (!gameOver)
         {
-            Draw();
+            //Draw();
             Input();
-            Logic();
+            Logic(Level_1);
+            Level_1.DrowMap();
+            if (gameOver)
+            {
+                gameover();
+                Setup(Level_1);
+
+            }
         }
 
     }
+
+    Level_1.DrowMap();
+
 }
