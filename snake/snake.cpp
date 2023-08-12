@@ -162,6 +162,86 @@ void Setup(map& Level) // function Setting
 
 void CreateLevels()
 {
+
+    class Box_5x5
+    {
+    private:
+        int Box[20][2];
+        int x;
+        int y;
+        int DoorX;
+        int DoorY;
+    public:
+        Box_5x5()
+        {
+            x = 0;
+            y = 0;
+            DoorX = -1;
+            DoorY = -1;
+        }
+
+      
+        void SetDoorX(int valueDoorX)
+        {
+            DoorX = valueDoorX;
+        }
+        void SetDoorY(int valueDoorY)
+        {
+            DoorY = valueDoorY;
+        }
+        int GetDoorX()
+        {
+            return DoorX;
+        }
+        int GetDoorY()
+        {
+            return DoorY;
+        }
+        int GetBoxSize()
+        {
+            return size(Box);
+        }
+        int GetBox(int i, int j)
+        {
+            return Box[i][j];
+        }
+
+        void CreateBox(int valueX, int valueY)
+        {
+            for (int i = 0; i < size(Box); i++)
+            {
+                if (i < 5)
+                {
+                    Box[i][0] = x;
+                    Box[i][1] = y;
+                    y++;
+                }
+                else if (i >= 5 && i < 10)
+                {
+                    Box[i][0] = x;
+                    Box[i][1] = y;
+                    x++;
+                }
+                else if (i >= 10 && i < 15)
+                {
+                    Box[i][0] = x;
+                    Box[i][1] = y;
+                    y--;
+                }
+                else
+                {
+                    Box[i][0] = x;
+                    Box[i][1] = y;
+                    x--;
+                }
+
+            }
+
+            
+        }
+    };
+
+
     // Level_2
    
     int Right_Angle_Left_Up[5][2] = { {5, 2}, {3, 2}, {3, 4}, {3, 3}, {4, 2} };
@@ -175,11 +255,54 @@ void CreateLevels()
         Level_2.SetMapDesign(Right_Angle_Right_Up[i][1], Right_Angle_Right_Up[i][0], '#');
         Level_2.SetMapDesign(Right_Angle_Left_Down[i][1], Right_Angle_Left_Down[i][0], '#');
         Level_2.SetMapDesign(Right_Angle_Right_Down[i][1], Right_Angle_Right_Down[i][0], '#');
-        //Level_2.SetMapDesign()
-
     }
     
+    // Level_3
+    Box_5x5 Box_Left_Up, Box_Right_Up, Box_Left_Down, Box_Right_Down;
+    int x = 3;
+    int y = 2;
+    int DoorX = 8;
+    int DoorY = 4;
+    
+    Box_Left_Up.SetDoorX(DoorX);
+    Box_Left_Up.SetDoorY(DoorY);
+    Box_Left_Up.CreateBox(x, y);
 
+    //for (int i = 0; i < Box_Left_Up.GetBoxSize(); i++)
+    //{
+    //    if (i < 5)
+    //    {
+    //         Box_Left_Up.SetX(x)
+    //        Box_Left_Up[i][1] = y;
+    //        y++;
+    //    }
+    //    else if (i >= 5 && i < 10)
+    //    {
+    //        Box_Left_Up[i][0] = x;
+    //        Box_Left_Up[i][1] = y;
+    //        x++;
+    //    }
+    //    else if (i >= 10 && i < 15)
+    //    {
+    //        Box_Left_Up[i][0] = x;
+    //        Box_Left_Up[i][1] = y;
+    //        y--;
+    //    }
+    //    else
+    //    {
+    //        Box_Left_Up[i][0] = x;
+    //        Box_Left_Up[i][1] = y;
+    //        x--;
+    //    }
+    //    
+
+    //}
+
+    for (int i = 0; i < Box_Left_Up.GetBoxSize(); i++)
+    {
+        Level_3.SetMapDesign(Box_Left_Up.GetBox(i, 1), Box_Left_Up.GetBox(i, 0), '#');
+    }
+    ;
 }
 
 void DrowMenu()
@@ -417,7 +540,7 @@ void main()
 
     //}
     CreateLevels();
-    Level_2.DrowMap();
+    Level_3.DrowMap();
 
 
 }
