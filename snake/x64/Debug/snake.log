@@ -1,4 +1,4 @@
 ﻿  snake.cpp
-C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(202,24): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(516,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(206,24): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(492,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
   snake.vcxproj -> C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\x64\Debug\snake.exe

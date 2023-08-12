@@ -180,7 +180,11 @@ void CreateLevels()
             DoorY = -1;
         }
 
-      
+        bool CheckDoor()
+        {
+            return DoorX >= 0 && DoorY >= 0;
+      }
+
         void SetDoorX(int valueDoorX)
         {
             DoorX = valueDoorX;
@@ -212,31 +216,31 @@ void CreateLevels()
             {
                 if (i < 5)
                 {
-                    Box[i][0] = x;
-                    Box[i][1] = y;
-                    y++;
+                    Box[i][0] = valueX;
+                    Box[i][1] = valueY;
+                    valueY++;
                 }
                 else if (i >= 5 && i < 10)
                 {
-                    Box[i][0] = x;
-                    Box[i][1] = y;
-                    x++;
+                    Box[i][0] = valueX;
+                    Box[i][1] = valueY;
+                    valueX++;
                 }
                 else if (i >= 10 && i < 15)
                 {
-                    Box[i][0] = x;
-                    Box[i][1] = y;
-                    y--;
+                    Box[i][0] = valueX;
+                    Box[i][1] = valueY;
+                    valueY--;
                 }
                 else
                 {
-                    Box[i][0] = x;
-                    Box[i][1] = y;
-                    x--;
+                    Box[i][0] = valueX;
+                    Box[i][1] = valueY;
+                    valueX--;
                 }
 
             }
-
+            
             
         }
     };
@@ -268,41 +272,13 @@ void CreateLevels()
     Box_Left_Up.SetDoorY(DoorY);
     Box_Left_Up.CreateBox(x, y);
 
-    //for (int i = 0; i < Box_Left_Up.GetBoxSize(); i++)
-    //{
-    //    if (i < 5)
-    //    {
-    //         Box_Left_Up.SetX(x)
-    //        Box_Left_Up[i][1] = y;
-    //        y++;
-    //    }
-    //    else if (i >= 5 && i < 10)
-    //    {
-    //        Box_Left_Up[i][0] = x;
-    //        Box_Left_Up[i][1] = y;
-    //        x++;
-    //    }
-    //    else if (i >= 10 && i < 15)
-    //    {
-    //        Box_Left_Up[i][0] = x;
-    //        Box_Left_Up[i][1] = y;
-    //        y--;
-    //    }
-    //    else
-    //    {
-    //        Box_Left_Up[i][0] = x;
-    //        Box_Left_Up[i][1] = y;
-    //        x--;
-    //    }
-    //    
-
-    //}
+   
 
     for (int i = 0; i < Box_Left_Up.GetBoxSize(); i++)
     {
         Level_3.SetMapDesign(Box_Left_Up.GetBox(i, 1), Box_Left_Up.GetBox(i, 0), '#');
     }
-    ;
+    if (Box_Left_Up.CheckDoor()) Level_3.SetMapDesign(Box_Left_Up.GetDoorY(), Box_Left_Up.GetDoorX(), ' ');
 }
 
 void DrowMenu()
