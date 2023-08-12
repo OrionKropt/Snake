@@ -272,13 +272,22 @@ void CreateLevels()
     Box_Left_Up.SetDoorY(DoorY);
     Box_Left_Up.CreateBox(x, y);
 
+    y = 12;
+    DoorY = 14;
+
+    Box_Left_Down.SetDoorX(DoorX);
+    Box_Left_Down.SetDoorY(DoorY);
+    Box_Left_Down.CreateBox(x, y);
    
 
     for (int i = 0; i < Box_Left_Up.GetBoxSize(); i++)
     {
         Level_3.SetMapDesign(Box_Left_Up.GetBox(i, 1), Box_Left_Up.GetBox(i, 0), '#');
+        Level_3.SetMapDesign(Box_Left_Down.GetBox(i, 1), Box_Left_Down.GetBox(i, 0), '#');
     }
+
     if (Box_Left_Up.CheckDoor()) Level_3.SetMapDesign(Box_Left_Up.GetDoorY(), Box_Left_Up.GetDoorX(), ' ');
+    if (Box_Left_Down.CheckDoor()) Level_3.SetMapDesign(Box_Left_Down.GetDoorY(), Box_Left_Down.GetDoorX(), ' ');
 }
 
 void DrowMenu()
