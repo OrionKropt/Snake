@@ -92,13 +92,19 @@ public:
         }
     }
 
-    void Add_to_map_Right_angle_small(void (*map)(int x, int y, char object))
+    void Add_to_map_Right_angle_small(map& Level)
     {
         for (int i = 0; i < 3; i++)
         {
-            map(Right_angle_small[i][0], Right_angle_small[i][1], '#');
+            Level.SetMapDesign(Right_angle_small[i][0], Right_angle_small[i][1], '#');
+            
         }
     }
+
+   /* int Get_size_Right_angle_small()
+    {
+        return size(Right_angle_small);
+    }*/
 
 };
 

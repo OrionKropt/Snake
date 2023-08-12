@@ -2,7 +2,7 @@
 #include <conio.h>
 #include <ctime>
 #include "TConsole.h"
-#include "Shapes.h"
+
 
 
 
@@ -163,14 +163,21 @@ void Setup(map& Level) // function Setting
 void CreateLevels()
 {
     // Level_2
-    for (int i = 0; i < width; i++)
-    {
-        for (int j = 0; j < height; j++)
-        {
-            
-        }
-    }
+   
+    int Right_Angle_Left_Up[5][2] = { {5, 2}, {3, 2}, {3, 4}, {3, 3}, {4, 2} };
+    int Right_Angle_Right_Up[5][2] = { {14, 2}, {15, 2}, {16, 2}, {16, 3}, {16, 4} };
+    int Right_Angle_Left_Down[5][2] = { {3, 15}, {3, 16}, {3, 17}, {4, 17}, {5, 17} };
+    int Right_Angle_Right_Down[5][2] = { {14, 17}, {15, 17}, {16, 17}, {16, 16}, {16, 15} };
 
+    for (int i = 0; i < size(Right_Angle_Left_Up); i++)
+    {
+        Level_2.SetMapDesign(Right_Angle_Left_Up[i][1], Right_Angle_Left_Up[i][0], '#');
+        Level_2.SetMapDesign(Right_Angle_Right_Up[i][1], Right_Angle_Right_Up[i][0], '#');
+        Level_2.SetMapDesign(Right_Angle_Left_Down[i][1], Right_Angle_Left_Down[i][0], '#');
+        Level_2.SetMapDesign(Right_Angle_Right_Down[i][1], Right_Angle_Right_Down[i][0], '#');
+        //Level_2.SetMapDesign()
+
+    }
     
 
 }
@@ -384,7 +391,7 @@ void gameover()
 
 void main()
 {
-    Shapes ReadyShapes;
+    
     
     //Setup(Level_1);
     //while (!mainMenu)
@@ -409,8 +416,8 @@ void main()
     //    }
 
     //}
-    ReadyShapes.RedyShapes();
-    ReadyShapes.Get_coordinates_Right_angle_small();
-    ReadyShapes.Add_to_map_Right_angle_small(Level_2.SetMapDesign);
+    CreateLevels();
+    Level_2.DrowMap();
+
 
 }
