@@ -4,14 +4,18 @@
 #include "TConsole.h"
 
 
-
+using namespace std;
 
 #define DEBUG
 
 #define PLAY 0
 #define LEVELS 1
 #define EXIT 2
-using namespace std;
+#define LEVEL_1 1
+#define LEVEL_2 2
+#define LEVEL_3 3
+
+
 
 
 
@@ -364,63 +368,59 @@ void Play()
     if (MainMenuDir == PLAY && click_enter) gameOver = false;
 }
 
-//void Draw() // Object drawing function
-//{
-//    system("cls"); 
-//    
-//    for (int i = 0; i <= width; i++)
-//    {
-//        cout << "#";
-//    }
-//    cout << endl;
-//
-//    for (int i = 0; i < height; i++)
-//    {
-//        for (int j = 0; j < width; j++)
-//        {
-//            if (j == 0 || j == width-1)
-//            {
-//                cout << "#";
-//            }
-//            
-//            if (i == y && j == x)
-//            {
-//                cout << "0";
-//            }
-//            else if (i == fruitY && j == fruitX)
-//            {
-//                cout << "$";
-//            }
-//            else
-//            {
-//                bool print = false;
-//                for (int k = 0; k < nTail; k++)
-//                {
-//                    if (tailX[k] == j && tailY[k] == i)
-//                    {
-//                        cout << "o";
-//                        print = true;
-//                    }
-//                }
-//                if (!print)
-//                {
-//                    cout << " ";
-//                }
-//                    
-//
-//            }
-//        }
-//        cout << endl;
-//        
-//    }
-//    
-//    for (int i = 0; i <= width; i++)
-//    {
-//        cout << "#";
-//    }
-//    cout << endl;
-//    cout << "Score " << score << endl;
-//}
+map& Selecting_levels()
+{
+    if (MainMenuDir == LEVELS && click_enter)
+    {
+        bool Selecting = true;
+        int Dir_Selecting_levels = LEVEL_1;
+        char key;
+        while (Selecting)
+        {
+            
+
+            if (Dir_Selecting_levels == LEVEL_1)
+            {
+                Level_1.DrowMap();
+                Console.GotoXY(32, 10);
+                Console.TextColor(COLOR_GREEN);
+                cout << "LEVEL 1";
+                Console.TextColor(COLOR_WHITE);
+                Console.GotoXY(27, 11);
+                cout << "----------------";
+                Console.GotoXY(27, 12);
+                cout << "Difficult - Easy";
+            }
+            else if (Dir_Selecting_levels == LEVEL_2)
+            {
+                Level_2.DrowMap();
+                Console.GotoXY(30, 10);
+                cout << "LEVEL 2";
+            }
+            else
+            {
+                Level_3.DrowMap();
+                Console.GotoXY(30, 10);
+                cout << "LEVEL 2";
+            }
+
+            key = _getch();
+            switch (key)
+            {
+            case 'a':
+                (Dir_Selecting_levels == LEVEL_1) ? (Dir_Selecting_levels = LEVEL_3) : (Dir_Selecting_levels--);
+                break;
+            case 'd':
+                (Dir_Selecting_levels == LEVEL_3) ? (Dir_Selecting_levels = LEVEL_1) : (Dir_Selecting_levels++);
+                break;
+            default:
+                break;
+            }
+        }
+    }
+    return Level_1;
+   
+}
 
 void Input() // Function that reads keystrokes
 {
@@ -550,6 +550,7 @@ void main()
         MoveMenu();
         exit();
         Play();
+        Selecting_levels();
         click_enter = false;
         while (!gameOver)
         {
@@ -565,7 +566,7 @@ void main()
 
             }
         }
-
+        
     }
     
    

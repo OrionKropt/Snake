@@ -129,9 +129,6 @@
   <ItemGroup>
     <ClCompile Include="snake.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Shapes.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
