@@ -68,7 +68,14 @@ public:
     {
         MapDesign[i][j] = object;
     }
-
+    int GetSizeMapDesign()
+    {
+        return size(MapDesign);
+    }
+    char GetMapDesign(int i, int j)
+    {
+        return MapDesign[i][j];
+    }
     void SetFruit(int x, int y)
     {
         
@@ -147,7 +154,7 @@ void Setup(map& Level) // function Setting
     } while (!Level.CheckFruit(fruitX, fruitY));
 
     Level.SetFruit(fruitX, fruitY);
-
+    
     for (int i = 0; i < 100; i++)
     {
         tailX[i] = 0;
@@ -487,14 +494,29 @@ void Logic(map& Level) // Games's logic
     }
     
     
+    
+    if (Level.GetMapDesign(y, x) == '#') gameOver = true;
+    
 
     if (x == fruitX && y == fruitY)
     {
-        do
+        /*do
         {
             fruitX = rand() % width;
             fruitY = rand() % height;
-        } while (!Level.CheckFruit(fruitX, fruitY));
+            
+        } while (!Level.CheckFruit(fruitX, fruitY));*/
+        fruitX = rand() % width;
+        fruitY = rand() % height;
+        while (!Level.CheckFruit(fruitX, fruitY))
+        {
+            //Console.GotoXY(50, 15);
+            //cout << "BAN!" << endl;
+            Level.SetMapDesign(fruitY, fruitX, '#');
+            fruitX = rand() % width;
+            fruitY = rand() % height;
+            
+        }
 
         Level.SetFruit(fruitX, fruitY);
        
@@ -520,32 +542,33 @@ void gameover()
 void main()
 {
     
-    
-    //Setup(Level_1);
-    //while (!mainMenu)
-    //{
-    //    DrowMenu();
-    //    MoveMenu();
-    //    exit();
-    //    Play();
-    //    click_enter = false;
-    //    while (!gameOver)
-    //    {
-    //        //Draw();
-    //        Input();
-    //        Logic(Level_1);
-    //        Level_1.DrowMap();
-    //        if (gameOver)
-    //        {
-    //            gameover();
-    //            Setup(Level_1);
-
-    //        }
-    //    }
-
-    //}
     CreateLevels();
-    Level_3.DrowMap();
+    Setup(Level_2);
+    while (!mainMenu)
+    {
+        DrowMenu();
+        MoveMenu();
+        exit();
+        Play();
+        click_enter = false;
+        while (!gameOver)
+        {
+            //Draw();
+            Input();
+            Logic(Level_2);
+            Level_2.DrowMap();
+            if (gameOver)
+            {
+                gameover();
+                Setup(Level_2);
+                CreateLevels();
+
+            }
+        }
+
+    }
+    
+   
 
 
 }
