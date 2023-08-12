@@ -278,16 +278,36 @@ void CreateLevels()
     Box_Left_Down.SetDoorX(DoorX);
     Box_Left_Down.SetDoorY(DoorY);
     Box_Left_Down.CreateBox(x, y);
+
+    y = 2;
+    x = 12;
+    DoorX = 12;
+    DoorY = 6;
+
+    Box_Right_Up.SetDoorX(DoorX);
+    Box_Right_Up.SetDoorY(DoorY);
+    Box_Right_Up.CreateBox(x, y);
+    
+    DoorX = 12;
+    DoorY = 14;
+    y = 12;
    
+    Box_Right_Down.SetDoorX(DoorX);
+    Box_Right_Down.SetDoorY(DoorY);
+    Box_Right_Down.CreateBox(x, y);
 
     for (int i = 0; i < Box_Left_Up.GetBoxSize(); i++)
     {
         Level_3.SetMapDesign(Box_Left_Up.GetBox(i, 1), Box_Left_Up.GetBox(i, 0), '#');
+        Level_3.SetMapDesign(Box_Right_Up.GetBox(i, 1), Box_Right_Up.GetBox(i, 0), '#');
         Level_3.SetMapDesign(Box_Left_Down.GetBox(i, 1), Box_Left_Down.GetBox(i, 0), '#');
+        Level_3.SetMapDesign(Box_Right_Down.GetBox(i, 1), Box_Right_Down.GetBox(i, 0), '#');
     }
 
     if (Box_Left_Up.CheckDoor()) Level_3.SetMapDesign(Box_Left_Up.GetDoorY(), Box_Left_Up.GetDoorX(), ' ');
+    if (Box_Right_Up.CheckDoor()) Level_3.SetMapDesign(Box_Right_Up.GetDoorY(), Box_Right_Up.GetDoorX(), ' ');
     if (Box_Left_Down.CheckDoor()) Level_3.SetMapDesign(Box_Left_Down.GetDoorY(), Box_Left_Down.GetDoorX(), ' ');
+    if (Box_Right_Down.CheckDoor()) Level_3.SetMapDesign(Box_Right_Down.GetDoorY(), Box_Right_Down.GetDoorX(), ' ');
 }
 
 void DrowMenu()
