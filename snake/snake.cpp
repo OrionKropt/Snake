@@ -413,6 +413,9 @@ map& Selecting_levels()
             case 'd':
                 (Dir_Selecting_levels == LEVEL_3) ? (Dir_Selecting_levels = LEVEL_1) : (Dir_Selecting_levels++);
                 break;
+            case 27:    // Esc
+                Selecting = false;
+                break;
             default:
                 break;
             }
