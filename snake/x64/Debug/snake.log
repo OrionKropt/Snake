@@ -1,6 +1,5 @@
 ﻿  snake.cpp
 C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(77,20): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(219,24): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(583,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
-  LINK : не найден или не выполнена сборка C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\x64\Debug\snake.exe при последней инкрементной компоновке; выполняется полная компоновка
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(231,24): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(595,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
   snake.vcxproj -> C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\x64\Debug\snake.exe

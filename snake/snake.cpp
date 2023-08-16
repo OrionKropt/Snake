@@ -107,7 +107,9 @@ public:
             {
                 if (i == y && j == x)
                 {
+                    Console.TextColor(COLOR_GREEN);
                     MapDesign[i][j] = '0';
+                    
                 }
                 else if (i == 0 || j == 0 || i == width - 1 || j == height - 1) MapDesign[i][j] = '#';
                 else
@@ -117,7 +119,9 @@ public:
                     {
                         if (tailX[k] == j && tailY[k] == i)
                         {
+                            Console.TextColor(COLOR_GREEN);
                             MapDesign[i][j] = 'o';
+                            
                             print = true;
                         }
                     }
@@ -126,7 +130,15 @@ public:
                         MapDesign[i][j] = ' ';
                     }
                 }
-                cout << MapDesign[i][j];
+                if (MapDesign[i][j] == '$')
+                {
+                    Console.TextColor(COLOR_LIGHTRED);
+                    cout << MapDesign[i][j];
+                    
+                }
+                else cout << MapDesign[i][j];
+                Console.TextColor(COLOR_WHITE);
+                
             }
             cout << endl;
         }
