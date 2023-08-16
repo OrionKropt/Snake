@@ -1,2 +1,7 @@
 ﻿  snake.cpp
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(77,20): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(166,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(232,24): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(459,42): warning C4244: =: преобразование "wint_t" в "char", возможна потеря данных
+C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\snake\snake.cpp(640,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
   snake.vcxproj -> C:\Users\OrionKropt\Desktop\Проекты Visual Studio\snake\x64\Debug\snake.exe
