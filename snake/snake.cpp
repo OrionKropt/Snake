@@ -138,9 +138,11 @@ public:
 
 map Level_1, Level_2, Level_3;
 
+map& Selected_Level = Level_1;
 
 
-void Setup(map& Level) // function Setting
+
+void Setup() // function Setting
 {
     gameOver = true;
     mainMenu = false;
@@ -149,15 +151,15 @@ void Setup(map& Level) // function Setting
     MainMenuDir = 0;
     x = width / 2;
     y = height / 2;
-    Level.ClearFruit(fruitX, fruitY);
+    Selected_Level.ClearFruit(fruitX, fruitY);
     do
     {
         fruitX = rand() % width;
         fruitY = rand() % height;
         
-    } while (!Level.CheckFruit(fruitX, fruitY));
+    } while (!Selected_Level.CheckFruit(fruitX, fruitY));
 
-    Level.SetFruit(fruitX, fruitY);
+    Selected_Level.SetFruit(fruitX, fruitY);
     
     for (int i = 0; i < 100; i++)
     {
@@ -324,105 +326,7 @@ void CreateLevels()
 void DrowMenu()
 {
     system("cls");
-   /* int x = 40, y = 3;
-    int HeightWord = 8, WidthWord = 9;
-    int DirDrow = 0;
-    int j = y;
-    int i = x;
-    bool DrowBox = true;
-    
-    int Count = 0;
-    while (DrowBox)
-    {*/
-        
-    //    if (Count < DirDrow+HeightWord)
-    //    {
-    //        Console.GotoXY(i, j);
-    //        cout << "&";
-    //        j++;
-    //    }
-    //    else if (Count < DirDrow + HeightWord + WidthWord)
-    //    {
-    //        Console.GotoXY(i, j);
-    //        cout << "&";
-    //        i++;
-    //    }
-    //    else if (Count < DirDrow + HeightWord*2 + WidthWord)
-    //    {
-    //        Console.GotoXY(i, j);
-    //        cout << "&";
-    //        j--;
-    //    }
-    //    else if (Count < DirDrow + HeightWord * 2 + WidthWord*2)
-    //    {
 
-    //        Console.GotoXY(i, j);
-    //        cout << "&";
-    //        i--;
-    //    }
-    //    else
-    //    {
-    //        DrowBox = false;
-    //    }
-    //    Count++;
-    //}
-    //// word S
-    //x = 48;
-    //y = 6;
-    //Console.TextColor(COLOR_GREEN);
-    //Console.GotoXY(x, y);
-    //cout << "&";
-    //x--;
-    //Console.GotoXY(x, y);
-    //cout << "&";
-
-    //y--;
-    //Console.GotoXY(x, y);
-    //cout << "&";
-    //x--;
-    //
-    //Console.GotoXY(x, y);
-    //cout << "&";
-    //
-    //y--;
-    //Console.GotoXY(x, y);
-    //cout << "&";
-    //x--;
-    //
-    //Console.GotoXY(x, y);
-    //cout << "&";
-    //x--;
-
-    //Console.GotoXY(x, y);
-    //cout << "&";
-    //x--;
-    //Console.GotoXY(x, y);
-    //cout << "&";
-   
-    //y++;
-
-    //Console.GotoXY(x, y);
-    //cout << "&";
-    //x--;
-    //
-    //Console.GotoXY(x, y);
-    //cout << "&";
-    //y++;
-    //Console.GotoXY(x, y);
-    //cout << "&";
-
-    //x--;
-    //Console.GotoXY(x, y);
-    //cout << "&";
-    // Up part
-    
-   /* for (x; x <= 42; x++)
-    {
-        Console.GotoXY(x, y);
-        cout << "&";
-        y++;
-    }*/
-    //Console.GotoXY(x, y);
 
     Console.TextColor(COLOR_GREEN);
     cout << "\n\n";
@@ -482,7 +386,7 @@ void Play()
     if (MainMenuDir == PLAY && click_enter) gameOver = false;
 }
 
-map& Selecting_levels()
+void Selecting_levels()
 {
     if (MainMenuDir == LEVELS && click_enter)
     {
@@ -496,6 +400,8 @@ map& Selecting_levels()
             if (Dir_Selecting_levels == LEVEL_1)
             {
                 Level_1.DrowMap();
+                cout << "\n\nClick on 'A' and 'D' to move through menu";
+                cout << "\n\nClick on 'Enter' to set up the level\n";
                 Console.GotoXY(32, 10);
                 Console.TextColor(COLOR_GREEN);
                 cout << "LEVEL 1";
@@ -508,14 +414,30 @@ map& Selecting_levels()
             else if (Dir_Selecting_levels == LEVEL_2)
             {
                 Level_2.DrowMap();
-                Console.GotoXY(30, 10);
+                cout << "\n\nClick on 'A' and 'D' to move through menu";
+                cout << "\n\nClick on 'Enter' to set up the level\n";
+                Console.GotoXY(32, 10);
+                Console.TextColor(COLOR_GREEN);
                 cout << "LEVEL 2";
+                Console.TextColor(COLOR_WHITE);
+                Console.GotoXY(27, 11);
+                cout << "----------------";
+                Console.GotoXY(27, 12);
+                cout << "Difficult - Normal";
             }
             else
             {
                 Level_3.DrowMap();
-                Console.GotoXY(30, 10);
-                cout << "LEVEL 2";
+                cout << "\n\nClick on 'A' and 'D' to move through menu";
+                cout << "\n\nClick on 'Enter' to set up the level\n";
+                Console.GotoXY(32, 10);
+                Console.TextColor(COLOR_GREEN);
+                cout << "LEVEL 3";
+                Console.TextColor(COLOR_WHITE);
+                Console.GotoXY(27, 11);
+                cout << "----------------";
+                Console.GotoXY(27, 12);
+                cout << "Difficult - Hard";
             }
 
             key = _getch();
@@ -527,15 +449,23 @@ map& Selecting_levels()
             case 'd':
                 (Dir_Selecting_levels == LEVEL_3) ? (Dir_Selecting_levels = LEVEL_1) : (Dir_Selecting_levels++);
                 break;
+            case 13:    // Enter
+                
+                if (Dir_Selecting_levels == LEVEL_1) Selected_Level = Level_1;
+                else if (Dir_Selecting_levels == LEVEL_2) Selected_Level = Level_2;
+                else Selected_Level = Level_3;
+                Setup();
             case 27:    // Esc
                 Selecting = false;
                 break;
             default:
                 break;
+
+                
             }
         }
     }
-    return Level_1;
+
    
 }
 
@@ -567,7 +497,7 @@ void Input() // Function that reads keystrokes
    }
 }
 
-void Logic(map& Level) // Games's logic
+void Logic() // Games's logic
 {
 
     int prevX = tailX[0];
@@ -612,33 +542,26 @@ void Logic(map& Level) // Games's logic
     
     
     
-    if (Level.GetMapDesign(y, x) == '#') gameOver = true;
+    if (Selected_Level.GetMapDesign(y, x) == '#') gameOver = true;
     
 
     if (x == fruitX && y == fruitY)
     {
-        /*do
-        {
-            fruitX = rand() % width;
-            fruitY = rand() % height;
-            
-        } while (!Level.CheckFruit(fruitX, fruitY));*/
+        
         fruitX = rand() % width;
         fruitY = rand() % height;
-        while (!Level.CheckFruit(fruitX, fruitY))
+        while (!Selected_Level.CheckFruit(fruitX, fruitY))
         {
-            //Console.GotoXY(50, 15);
-            //cout << "BAN!" << endl;
-            Level.SetMapDesign(fruitY, fruitX, '#');
+            
+            Selected_Level.SetMapDesign(fruitY, fruitX, '#');
             fruitX = rand() % width;
             fruitY = rand() % height;
             
         }
 
-        Level.SetFruit(fruitX, fruitY);
+        Selected_Level.SetFruit(fruitX, fruitY);
        
-        /*fruitX = rand() % width;
-        fruitY = rand() % height;*/
+        
         score += 10;
         nTail++;
     }
@@ -660,7 +583,7 @@ void main()
 {
     
     CreateLevels();
-    Setup(Level_2);
+    Setup();
     while (!mainMenu)
     {
         DrowMenu();
@@ -668,17 +591,18 @@ void main()
         exit();
         Play();
         Selecting_levels();
+        
         click_enter = false;
         while (!gameOver)
         {
-            //Draw();
+            
             Input();
-            Logic(Level_2);
-            Level_2.DrowMap();
+            Logic();
+            Selected_Level.DrowMap();
             if (gameOver)
             {
                 gameover();
-                Setup(Level_2);
+                Setup();
                 CreateLevels();
 
             }
