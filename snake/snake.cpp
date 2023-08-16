@@ -324,7 +324,7 @@ void CreateLevels()
 void DrowMenu()
 {
     system("cls");
-    int x = 40, y = 3;
+   /* int x = 40, y = 3;
     int HeightWord = 8, WidthWord = 9;
     int DirDrow = 0;
     int j = y;
@@ -333,89 +333,89 @@ void DrowMenu()
     
     int Count = 0;
     while (DrowBox)
-    {
+    {*/
         
-        if (Count < DirDrow+HeightWord)
-        {
-            Console.GotoXY(i, j);
-            cout << "&";
-            j++;
-        }
-        else if (Count < DirDrow + HeightWord + WidthWord)
-        {
-            Console.GotoXY(i, j);
-            cout << "&";
-            i++;
-        }
-        else if (Count < DirDrow + HeightWord*2 + WidthWord)
-        {
-            Console.GotoXY(i, j);
-            cout << "&";
-            j--;
-        }
-        else if (Count < DirDrow + HeightWord * 2 + WidthWord*2)
-        {
+    //    if (Count < DirDrow+HeightWord)
+    //    {
+    //        Console.GotoXY(i, j);
+    //        cout << "&";
+    //        j++;
+    //    }
+    //    else if (Count < DirDrow + HeightWord + WidthWord)
+    //    {
+    //        Console.GotoXY(i, j);
+    //        cout << "&";
+    //        i++;
+    //    }
+    //    else if (Count < DirDrow + HeightWord*2 + WidthWord)
+    //    {
+    //        Console.GotoXY(i, j);
+    //        cout << "&";
+    //        j--;
+    //    }
+    //    else if (Count < DirDrow + HeightWord * 2 + WidthWord*2)
+    //    {
 
-            Console.GotoXY(i, j);
-            cout << "&";
-            i--;
-        }
-        else
-        {
-            DrowBox = false;
-        }
-        Count++;
-    }
-    // word S
-    x = 48;
-    y = 6;
-    Console.TextColor(COLOR_GREEN);
-    Console.GotoXY(x, y);
-    cout << "&";
-    x--;
-    Console.GotoXY(x, y);
-    cout << "&";
+    //        Console.GotoXY(i, j);
+    //        cout << "&";
+    //        i--;
+    //    }
+    //    else
+    //    {
+    //        DrowBox = false;
+    //    }
+    //    Count++;
+    //}
+    //// word S
+    //x = 48;
+    //y = 6;
+    //Console.TextColor(COLOR_GREEN);
+    //Console.GotoXY(x, y);
+    //cout << "&";
+    //x--;
+    //Console.GotoXY(x, y);
+    //cout << "&";
 
-    y--;
-    Console.GotoXY(x, y);
-    cout << "&";
-    x--;
-    
-    Console.GotoXY(x, y);
-    cout << "&";
-    
-    y--;
-    Console.GotoXY(x, y);
-    cout << "&";
-    x--;
-    
-    Console.GotoXY(x, y);
-    cout << "&";
-    x--;
+    //y--;
+    //Console.GotoXY(x, y);
+    //cout << "&";
+    //x--;
+    //
+    //Console.GotoXY(x, y);
+    //cout << "&";
+    //
+    //y--;
+    //Console.GotoXY(x, y);
+    //cout << "&";
+    //x--;
+    //
+    //Console.GotoXY(x, y);
+    //cout << "&";
+    //x--;
 
-    Console.GotoXY(x, y);
-    cout << "&";
-    x--;
-    Console.GotoXY(x, y);
-    cout << "&";
+    //Console.GotoXY(x, y);
+    //cout << "&";
+    //x--;
+    //Console.GotoXY(x, y);
+    //cout << "&";
    
-    y++;
+    //y++;
 
-    Console.GotoXY(x, y);
-    cout << "&";
-    x--;
-    
-    Console.GotoXY(x, y);
-    cout << "&";
-    y++;
-    Console.GotoXY(x, y);
-    cout << "&";
+    //Console.GotoXY(x, y);
+    //cout << "&";
+    //x--;
+    //
+    //Console.GotoXY(x, y);
+    //cout << "&";
+    //y++;
+    //Console.GotoXY(x, y);
+    //cout << "&";
 
-    x--;
-    Console.GotoXY(x, y);
-    cout << "&";
+    //x--;
+    //Console.GotoXY(x, y);
+    //cout << "&";
+    // Up part
     
-    // первая половина
    /* for (x; x <= 42; x++)
     {
         Console.GotoXY(x, y);
@@ -424,6 +424,19 @@ void DrowMenu()
     }*/
     //Console.GotoXY(x, y);
 
+    Console.TextColor(COLOR_GREEN);
+    cout << "\n\n";
+    cout << "\t\t\t   &&&&&         NNN         NN             &             NN      NN   &&&&&&&&&&" <<  endl;
+    cout << "\t\t\t &&&    &&&      NN NN       NN            &&&            NN    NN     &&P       " << endl;
+    cout << "\t\t\t&&&       &&&    NN  N       NN           &   &           NN   NN      &&" << endl;
+    cout << "\t\t\t  &&&            NN   NN     NN          &&   &&          NN  NN       &&" << endl;
+    cout << "\t\t\t   &&&           NN    N     NN         &       &         NN NN        &&L       " << endl;
+    cout << "\t\t\t     &&&         NN     NN   NN        &&&&&&&&&&&        NNN          &&&&&&&&&&" << endl;
+    cout << "\t\t\t       &&&       NN      N   NN       &           &       NN NN        &&P" << endl;
+    cout << "\t\t\t         &&&     NN       NN NN      &&           &&      NN   NN      &&" << endl;
+    cout << "\t\t\t &&&    &&&      NN        N NN     &               &     NN    NN     &&L       " << endl;
+    cout << "\t\t\t    &&&&&        NN         NNN    &&               &&    NN     NN    &&&&&&&&&&" << endl;
+  
     Console.TextColor(COLOR_WHITE);
     if (MainMenuDir == PLAY) Console.TextColor(COLOR_GREEN);
     Console.GotoXY(60, 14);
