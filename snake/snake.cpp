@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define DEBUG
+
 
 #define PLAY 0
 #define LEVELS 1
@@ -52,7 +52,7 @@ private:
     char MapDesign[width][height];
    
 public:
-#ifdef DEBUG
+
     map()
     {
         for (int i = 0; i < width; i++)
@@ -64,7 +64,7 @@ public:
             }
         }
     }
-#endif // DEBUG
+
 
    
 
@@ -163,6 +163,7 @@ void Setup() // function Setting
     MainMenuDir = 0;
     x = width / 2;
     y = height / 2;
+    srand(time(NULL));
     Selected_Level.ClearFruit(fruitX, fruitY);
     do
     {
@@ -371,7 +372,9 @@ void DrowMenu()
 void MoveMenu()
 {
     int key = _getch();
-    
+    if (key != 13) key = tolower(key);
+    if (key == 230) key = 'w';
+    if (key == 235) key = 's';
     switch (key)
     {
     case 'w':
@@ -453,6 +456,9 @@ void Selecting_levels()
             }
 
             key = _getch();
+            if (key != 27) key = towlower(key);
+            if (key == 162) key = 'd';
+            if (key == 228) key = 'a';
             switch (key)
             {
             case 'a':
@@ -486,7 +492,11 @@ void Input() // Function that reads keystrokes
     if (_kbhit())
     {
         int key = _getch();
-       
+        if (key != 27) key = towlower(key);
+        if (key == 235) key = 's';
+        if (key == 230) key = 'w';
+        if (key == 162) key = 'd'; 
+        if (key == 228) key = 'a';
         switch (key)
         {
         case 'a':
@@ -586,8 +596,43 @@ void gameover()
     cout << "GAME OVER";
     Console.GotoXY(57, 16);
     cout << "Please, click space" << endl;
-    Console.GotoXY(57, 18);
-    cout << "Score: " << score;
+    if (score >= 300)
+    {
+        Console.GotoXY(57, 18);
+        cout << "Wow! You're the best!";
+        Console.GotoXY(57, 20);
+        cout << "Score: " << score;
+    }
+    else if (score >= 200)
+    {
+        Console.GotoXY(57, 18);
+        cout << "Not bad bro! It was cool!";
+        Console.GotoXY(57, 20);
+        cout << "Score: " << score;
+    }
+    else if (score >= 150)
+    {
+        Console.GotoXY(57, 18);
+        cout << "Nice try dude";
+        Console.GotoXY(57, 20);
+        cout << "Score: " << score;
+    }
+    else if (score >= 100)
+    {
+        Console.GotoXY(57, 18);
+        cout << "Could be better. Believe you can do it.";
+        Console.GotoXY(57, 20);
+        cout << "Score: " << score;
+    }
+    else
+    {
+        Console.GotoXY(57, 18);
+        cout << "Why is it so bad, man?";
+        Console.GotoXY(57, 20);
+        cout << "Score: " << score;
+    }
+   
+    
     while (_getch() != ' ');
 }
 
